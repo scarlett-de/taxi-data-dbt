@@ -18,9 +18,9 @@ Joining taxi trip data with geographic zones dimension for enriched insights
 Use of SQL and Jinja templating within dbt models
 
 ## Project Structure
-profiles.yml: Configures dbt connection to BigQuery via service account with specified dataset and project.
+**profiles.yml**: Configures dbt connection to BigQuery via service account with specified dataset and project.
 
-dbt_project.yml: dbt project configuration including model paths, materializations, and dataset targets.
+**dbt_project.yml**: dbt project configuration including model paths, materializations, and dataset targets.
 
 Models:
 
