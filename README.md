@@ -18,23 +18,37 @@ Joining taxi trip data with geographic zones dimension for enriched insights
 Use of SQL and Jinja templating within dbt models
 
 ## Project Structure
-**profiles.yml**: Configures dbt connection to BigQuery via service account with specified dataset and project.
+**profiles.yml**: Configures dbt connection to BigQuery via service account with specified project and dataset.
+set trips_data_all as default dataset
 
-**dbt_project.yml**: dbt project configuration including model paths, materializations, and dataset targets.
+**dbt_project.yml**: dbt project configuration including model paths(where the models are saved), materializations(how to build models like view, table etc.), and dataset targets(dataset or schema in the warehouse).
 
-Models:
+**Models**:
+- staging models:
 
-staging: Contains views for raw external tables (Green and Yellow taxi trips).
+Handle raw data cleaning
 
-core: Contains materialized tables that combine, clean, and enrich data for analytics.
+Standardize column types
 
-Sources: Defined for raw external datasets ext_green_taxi and ext_yellow_taxi.
+Remove duplicate entries using row_number() over (...)
 
-Transformations: SQL models that:
+Generate surrogate keys
 
-Union Green and Yellow taxi trip data, adding service type labels.
+- Core models:
+  
+Join and unify taxi trip records from multiple sources.
 
-Join trip data with dim_zones table for location context (borough, zone).
+Enrich data with geographic zone details.
+
+Provide aggregated insights such as fare trends and trip volumes.
+
+- Dimension Tables
+Contain cleaned metadata (e.g., pickup/dropoff zones).
+
+Used to join contextual information into fact models.
+
+**Use of Macro**
+This project leverages custom dbt macros to simplify and standardize repetitive logic across models. For example, the macro get_payment_type_description converts payment type codes into meaningful labels, improving readability and maintainability of SQL.
 
 
 ## Technologies Used
@@ -48,22 +62,7 @@ Service Account Key — secure authentication to BigQuery
 
 Modular Environment Setup — separate datasets for staging and analytics
 
-## Key dbt Configuration Details
-Connection Profile (profiles.yml)
 
-Connects to BigQuery project: dbt-project-451121
-
-Default dataset: trips_data_all (raw data)
-
-Authentication via service account key stored locally
-
-Project (dbt_project.yml)
-
-Models under namespaces:
-
-staging materialized as views in dataset dbt_nytaxi_staging
-
-core materialized as tables in dataset dbt_nytaxi_analytics
 
 ## skills demonstrated 
 Demonstrates practical knowledge of dbt and BigQuery for real-world ELT pipelines.
