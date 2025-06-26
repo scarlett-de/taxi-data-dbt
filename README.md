@@ -59,6 +59,51 @@ Used to join contextual information into fact models.
 
 This project leverages custom dbt macros to simplify and standardize repetitive logic across models. For example, the macro get_payment_type_description converts payment type codes into meaningful labels, improving readability and maintainability of SQL.
 
+## Steps to Build the Pipeline
+### Step 1: Configure dbt Project and Profiles
+Define your dbt_project.yml to set model paths, materializations (e.g., table, view), and dataset targets.
+
+Set up your profiles.yml to configure connection to BigQuery using your GCP service account and specify the default dataset (trips_data_all).
+
+### Step 2: Load Seed Data into BigQuery
+Place static lookup CSV files (e.g., taxi_zone_lookup.csv) in the seeds/ folder.
+
+Run dbt seed to upload these files as tables in BigQuery.
+
+These seed tables are used to enrich trip data with geographic zone information.
+
+### Step 3: Develop Staging Models for Raw Data Cleaning
+Write SQL models in the staging/ folder that:
+
+Clean raw Green and Yellow taxi data.
+
+Deduplicate rows using window functions.
+
+Cast columns to correct data types.
+
+Generate surrogate keys for unique identifiers.
+
+### Step 4: Create Core Models to Build Fact and Dimension Tables
+Build core models in the core/ folder to:
+
+Union cleaned Green and Yellow taxi data into a unified fact table.
+
+Join with dimensional tables such as zones.
+
+Calculate analytical aggregates like fare percentiles.
+
+### Step 5: Define and Use Custom Macros
+Develop macros (e.g., get_payment_type_description) in the macros/ folder for reusable SQL logic.
+
+Use these macros in models to improve maintainability and clarity.
+
+### Step 6: Run and Test the Pipeline
+Execute dbt build --vars '{is_test_run: false}' to compile, run, and test all models.
+
+Use dbt run --select <model_name> to run individual models as needed.
+
+Validate outputs by querying the resulting tables in BigQuery or connected BI tools.
+
 
 ## Technologies Used
 dbt (Data Build Tool) — for version-controlled ELT workflows
