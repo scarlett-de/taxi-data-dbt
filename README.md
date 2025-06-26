@@ -3,19 +3,21 @@
 This project demonstrates a full data engineering pipeline built using dbt (data build tool) and Google BigQuery. It processes and transforms NYC taxi trip data (Green and Yellow taxi datasets) into analytics-ready tables for downstream analysis.
 
 ## Project Overview
-The goal of this project is to build an efficient, scalable, and modular ELT pipeline to clean, join, and enrich raw taxi trip data stored in BigQuery. Key highlights:
+The goal of this project is to build an efficient, scalable, and modular ELT pipeline to clean, join, and enrich raw taxi trip data stored in BigQuery. 
 
-Use of dbt for modular, version-controlled data transformations
+Key highlights:
 
-Integration with BigQuery as the data warehouse
+- Use of dbt for modular, version-controlled data transformations
 
-Separation of environments and datasets (raw, staging, analytics)
+- Integration with BigQuery as the data warehouse
 
-Materialization strategies using views and tables for optimized querying
+- Separation of environments and datasets (raw, staging, analytics)
 
-Joining taxi trip data with geographic zones dimension for enriched insights
+- Materialization strategies using views and tables for optimized querying
 
-Use of SQL and Jinja templating within dbt models
+- Joining taxi trip data with geographic zones dimension for enriched insights
+
+- Use of SQL and Jinja templating within dbt models
 
 ## Project Structure
 ### profiles.yml:
