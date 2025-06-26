@@ -1,0 +1,12 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: dbt-project-451121           # Your GCP project ID
+      dataset: dbt_nytaxi_raw         
+      threads: 4
+      timeout_seconds: 300
+      keyfile: /path/to/your/service-account-key.json  # Path to your GCP service account JSON key
+      location: US                         # BigQuery location, e.g., US, EU
