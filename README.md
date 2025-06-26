@@ -33,27 +33,27 @@ For example, taxi_zone_lookup.csv is stored here and loaded as a seed table. Thi
 ### Models:
 **staging models**:
 
-Handle raw data cleaning
+- Handle raw data cleaning
 
-Standardize column types
+- Standardize column types
 
-Remove duplicate entries using row_number() over (...)
+- Remove duplicate entries using row_number() over (...)
 
-Generate surrogate keys
+- Generate surrogate keys
 
 **Core models**:
   
-Join and unify taxi trip records from multiple sources.
+- Join and unify taxi trip records from multiple sources.
 
-Enrich data with geographic zone details.
+- Enrich data with geographic zone details.
 
-Provide aggregated insights such as fare trends and trip volumes.
+- Provide aggregated insights such as fare trends and trip volumes.
 
 **Dimension Tables**
 
-Contain cleaned metadata (e.g., pickup/dropoff zones).
+- Contain cleaned metadata (e.g., pickup/dropoff zones).
 
-Used to join contextual information into fact models.
+- Used to join contextual information into fact models.
 
 ### Use of Macro
 
