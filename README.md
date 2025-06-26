@@ -18,13 +18,20 @@ Joining taxi trip data with geographic zones dimension for enriched insights
 Use of SQL and Jinja templating within dbt models
 
 ## Project Structure
-**profiles.yml**: Configures dbt connection to BigQuery via service account with specified project and dataset.
+### profiles.yml:
+Configures dbt connection to BigQuery via service account with specified project and dataset.
 set trips_data_all as default dataset
 
-**dbt_project.yml**: dbt project configuration including model paths(where the models are saved), materializations(how to build models like view, table etc.), and dataset targets(dataset or schema in the warehouse).
+### dbt_project.yml:
+dbt project configuration including model paths(where the models are saved), materializations(how to build models like view, table etc.), and dataset targets(dataset or schema in the warehouse).
 
-**Models**:
-- staging models:
+
+### Seeds
+Contains static CSV files to be loaded directly into the data warehouse as reference tables.
+For example, taxi_zone_lookup.csv is stored here and loaded as a seed table. This seed provides geographic zone metadata used to enrich fact tables and dimension models.
+
+### Models:
+**staging models**:
 
 Handle raw data cleaning
 
@@ -34,7 +41,7 @@ Remove duplicate entries using row_number() over (...)
 
 Generate surrogate keys
 
-- Core models:
+**Core models**:
   
 Join and unify taxi trip records from multiple sources.
 
@@ -42,12 +49,14 @@ Enrich data with geographic zone details.
 
 Provide aggregated insights such as fare trends and trip volumes.
 
-- Dimension Tables
+**Dimension Tables**
+
 Contain cleaned metadata (e.g., pickup/dropoff zones).
 
 Used to join contextual information into fact models.
 
-**Use of Macro**
+### Use of Macro
+
 This project leverages custom dbt macros to simplify and standardize repetitive logic across models. For example, the macro get_payment_type_description converts payment type codes into meaningful labels, improving readability and maintainability of SQL.
 
 
@@ -74,7 +83,3 @@ Applies best practices in data modeling, materialization strategies, and environ
 Builds foundation for downstream analytics and dashboarding use cases.
 
 
-
-Make sure you’ve installed dbt and initialized your project:
-
-```dbt init dbt_ny_taxi```
