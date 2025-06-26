@@ -61,12 +61,12 @@ This project leverages custom dbt macros to simplify and standardize repetitive 
 
 ## Steps to Build the Pipeline
 ### Step 1: Configure dbt Project and Profiles
-Define your dbt_project.yml to set model paths, materializations (e.g., table, view), and dataset targets.
+Define dbt_project.yml to set model paths, materializations (e.g., table, view), and dataset targets.
 
-Set up your profiles.yml to configure connection to BigQuery using your GCP service account and specify the default dataset (trips_data_all).
+Set up profiles.yml to configure connection to BigQuery using your GCP service account and specify the default dataset (trips_data_all).
 
 ### Step 2: Load Seed Data into BigQuery
-Place static lookup CSV files (e.g., taxi_zone_lookup.csv) in the seeds/ folder.
+Place static lookup CSV files (taxi_zone_lookup.csv) in the seeds/ folder.
 
 Run dbt seed to upload these files as tables in BigQuery.
 
@@ -98,7 +98,7 @@ Develop macros (e.g., get_payment_type_description) in the macros/ folder for re
 Use these macros in models to improve maintainability and clarity.
 
 ### Step 6: Run and Test the Pipeline
-Execute dbt build --vars '{is_test_run: false}' to compile, run, and test all models.
+Execute ```dbt build --vars '{is_test_run: false}'``` to compile, run, and test all models.
 
 Use dbt run --select <model_name> to run individual models as needed.
 
@@ -126,5 +126,11 @@ Illustrates ability to work with multiple data sources, union and join complex d
 Applies best practices in data modeling, materialization strategies, and environment separation.
 
 Builds foundation for downstream analytics and dashboarding use cases.
+
+## 👤 Author
+
+**YITIAN WANG**  
+[LinkedIn](www.linkedin.com/in/yitian-w-de) • [GitHub](https://github.com/scarlett-de)
+
 
 
